@@ -30,11 +30,32 @@ public class ArrayList <T>{
 	}
 	
 	public void insert(int loc, T val) throws IndexOutOfBoundsException {
-		//here
+		T[] arraycopy;
+		arraycopy = (T[]) new Object[array.length + 1];
+		for(int i = 0; i < array.length + 1; i++) {
+			if(i == loc) {
+				arraycopy[i] = val;
+			}
+			else if(i < loc){
+			arraycopy[i] = array[i];
+			}
+			else {
+				arraycopy[i] = array[i - 1];
+			}
+		}
+		array = arraycopy;
 	}
 	
 	public void set(int loc, T val) throws IndexOutOfBoundsException {
-		
+		T[] arraycopy;
+		arraycopy = (T[]) new Object[array.length];
+		for(int i = 0; i < array.length; i++) {
+			arraycopy[i] = array[i];
+			if(i == loc) {
+				arraycopy[i] = val;
+			}
+		}
+		array = arraycopy;
 	}
 	
 	public void remove(int loc) throws IndexOutOfBoundsException {
