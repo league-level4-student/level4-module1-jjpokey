@@ -59,11 +59,43 @@ public class ArrayList <T>{
 	}
 	
 	public void remove(int loc) throws IndexOutOfBoundsException {
-		
+		int skipped = 0;
+		T[] arraycopy;
+		arraycopy = (T[]) new Object[array.length - 1];
+		for(int i = 0; i < array.length - 1; i++) {
+			if(i == loc) {
+				arraycopy[i] = array[i + 1];
+				skipped = 1;
+			}
+			else if(skipped == 1){
+			arraycopy[i] = array[i + 1];
+			}
+			else {
+				arraycopy[i] = array[i];
+			}
+		}
+		array = arraycopy;
 	}
 	
 	public boolean contains(T val) {
-		
+		int contains = 0;
+		for(int i = 0; i < array.length; i++) {
+			if(array[i] == val) {
+				contains = 1;
+			}
+		}
+		if(contains > 0) {
+			return true;
+		}
+		else {
 		return false;
+		}
+	}
+	public int size() {
+		int counter = 0;
+		for(int i = 0; i < array.length; i++) {
+			counter++;
+		}
+		return counter;
 	}
 }
