@@ -185,6 +185,7 @@ String output = JOptionPane.showInputDialog("Would You Like To Play Again? (Yes/
 		//4. if they want to play again
 		//   reset the snake and the food and start the timer
 		//   else, exit the game
+
 		
 	}
 
@@ -196,13 +197,21 @@ String output = JOptionPane.showInputDialog("Would You Like To Play Again? (Yes/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//1. update the snake
-
+snake.update();
 		//2. if the snake is colliding with its own body 
 		//   or if the snake is out of bounds, call gameOver
-
+if(snake.isHeadCollidingWithBody()) {
+	gameOver();
+}
+if(snake.isOutOfBounds()) {
+	gameOver();
+}
 		//3. if the location of the head is equal to the location of the food,
 		// 	 feed the snake and set the food location
-
-		//4. call panel.repaint();
+if(snake.getHeadLocation() == foodLocation) {
+	snake.feed();
+	snake = new Snake(new Location(WIDTH / 2, HEIGHT / 2));
+}
+		panel.repaint();
 	}
 }
