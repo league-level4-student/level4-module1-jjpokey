@@ -87,13 +87,13 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		//   of the game. The smaller the number, the faster it goes.
 switch(choice) {
 case "Expert" :
-	timer.setDelay(3);
+	timer.setDelay(100);
 	break;
 case "Moderate" :
-	timer.setDelay(5);
+	timer.setDelay(200);
 	break;
 case "Beginner" :
-	timer.setDelay(8);
+	timer.setDelay(300);
 	break;
 	default :
 		JOptionPane.showMessageDialog(null, "Something Went Wrong! So we will automatically set the difficulty to Moderate");
@@ -125,16 +125,16 @@ timer.start();
 		// if the space key is pressed, call the snake's feed method
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_W : 
-			snake.setDirection(Direction.UP);
+			snake.setDirection(Direction.LEFT);
 			break;
 		case KeyEvent.VK_S :
-			snake.setDirection(Direction.DOWN);
-			break;
-		case KeyEvent.VK_D :
 			snake.setDirection(Direction.RIGHT);
 			break;
+		case KeyEvent.VK_D :
+			snake.setDirection(Direction.UP);
+			break;
 		case KeyEvent.VK_A :
-			snake.setDirection(Direction.LEFT);
+			snake.setDirection(Direction.DOWN);
 			break;
 		case KeyEvent.VK_SPACE :
 			snake.feed();
@@ -208,9 +208,10 @@ if(snake.isOutOfBounds()) {
 }
 		//3. if the location of the head is equal to the location of the food,
 		// 	 feed the snake and set the food location
-if(snake.getHeadLocation() == foodLocation) {
+if(snake.getHeadLocation().equals(foodLocation)) {
+	
 	snake.feed();
-	snake = new Snake(new Location(WIDTH / 2, HEIGHT / 2));
+	setFoodLocation();
 }
 		panel.repaint();
 	}
